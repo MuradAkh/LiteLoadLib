@@ -1,0 +1,4 @@
+{
+  "global.liteloadlib.registration.register_success": "Maximum number of registered vehicles reached: %s",
+  "global.liteloadlib.registration.register_fail": "Successfully registered the vehicle, vehicles registered: %s/%s"
+}

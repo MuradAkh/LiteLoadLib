@@ -23,7 +23,7 @@ public class EntityChunkManagerManager extends SavedData {
    MinecraftServer server;
 
     public static EntityChunkManagerManager get(MinecraftServer server){
-        return server.overworld().getDataStorage().computeIfAbsent(tag -> new EntityChunkManagerManager(tag, server), () -> new EntityChunkManagerManager(server), "littlelogistics:trainchunkmanagermanager");
+        return server.overworld().getDataStorage().computeIfAbsent(tag -> new EntityChunkManagerManager(tag, server), () -> new EntityChunkManagerManager(server), "liteloadlib:trainchunkmanagermanager");
     }
 
     private EntityChunkManagerManager(MinecraftServer server){

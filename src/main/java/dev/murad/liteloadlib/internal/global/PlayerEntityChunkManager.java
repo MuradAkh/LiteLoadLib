@@ -44,12 +44,12 @@ public class PlayerEntityChunkManager extends SavedData {
 
     public static PlayerEntityChunkManager get(ServerLevel level, UUID uuid){
         DimensionDataStorage storage = level.getDataStorage();
-        return storage.computeIfAbsent((tag) -> new PlayerEntityChunkManager(tag, level, uuid), () -> new PlayerEntityChunkManager(level, uuid), "littlelogistics:chunkmanager-" + uuid.toString());
+        return storage.computeIfAbsent((tag) -> new PlayerEntityChunkManager(tag, level, uuid), () -> new PlayerEntityChunkManager(level, uuid), "liteloadlib:chunkmanager-" + uuid.toString());
     }
 
     public static Optional<PlayerEntityChunkManager> getSaved(ServerLevel level, UUID uuid){
         DimensionDataStorage storage = level.getDataStorage();
-        return Optional.ofNullable(storage.get((tag) -> new PlayerEntityChunkManager(tag, level, uuid),"littlelogistics:chunkmanager-" + uuid.toString()));
+        return Optional.ofNullable(storage.get((tag) -> new PlayerEntityChunkManager(tag, level, uuid),"liteloadlib:chunkmanager-" + uuid.toString()));
     }
 
 
@@ -217,6 +217,7 @@ public class PlayerEntityChunkManager extends SavedData {
         this.uuid = uuid;
         numVehicles = tag.getInt("numVehicles");
         Arrays.stream(tag.getLongArray("chunksToLoad")).forEach(chunk -> toLoad.add(new ChunkPos(chunk)));
+        EntityChunkManagerManager.get(level.getServer()).enroll(this);
         if(LLLConfig.Server.OFFLINE_LOADING.get()){
             activate();
         }
